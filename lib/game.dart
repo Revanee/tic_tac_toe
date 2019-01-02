@@ -25,6 +25,12 @@ class Game {
     currentPlayer == 1 ? currentPlayer = 2 : currentPlayer = 1;
   }
 
+  bool colIsSame(int colIndex) {
+    List<int> col = field
+      .map((row) => row[colIndex]).toList();
+    return listIsSame(col) && col[0] != null;
+  }
+
   bool rowIsSame(int rowIndex) {
     List<int> row = field[rowIndex];
     return listIsSame(row) && row[0] != null;

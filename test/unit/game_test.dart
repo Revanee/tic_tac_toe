@@ -23,11 +23,24 @@ void main() {
 
   test('Row is different with null elements', () {
     Game game = Game();
-    List<List<int>> field = [[null, null, null]];
+    List<List<int>> field = [
+      [null, null, null]
+    ];
     game.field = field;
 
     bool res = game.rowIsSame(0);
 
     expect(res, false);
+  });
+
+  test('Column is same', () {
+    Game game = Game();
+    List<List<int>> field = [
+      [1, 1, 1]
+    ];
+
+    bool res = game.colIsSame(0);
+
+    expect(res, true);
   });
 }
