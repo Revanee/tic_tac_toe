@@ -48,8 +48,8 @@ class TicTacToeState extends State {
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
-      header(),
-      Padding(padding: EdgeInsets.all(20), child: Board(game, this)),
+      Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0), child: header()),
+      Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Board(game, this)),
       footer()
     ];
 
