@@ -28,12 +28,12 @@ class Game {
   bool colIsSame(int colIndex) {
     List<int> col = field
       .map((row) => row[colIndex]).toList();
-    return listIsSame(col) && col[0] != null;
+    return listIsSame(col);
   }
 
   bool rowIsSame(int rowIndex) {
     List<int> row = field[rowIndex];
-    return listIsSame(row) && row[0] != null;
+    return listIsSame(row);
   }
 
   bool listIsSame(List list) {
@@ -41,7 +41,7 @@ class Game {
     bool listIsSame = list
       .map((x) => x == firstElement)
       .reduce((res, val) => res && val);
-    return listIsSame;
+    return listIsSame && firstElement != null;
   }
 
   startNewGame() {
