@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/game.dart';
 
 class Board extends StatefulWidget {
-  Game game;
-  State parent;
+  final Game game;
+  final State parent;
 
   Board(this.game, this.parent);
 
