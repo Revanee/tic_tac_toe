@@ -3,22 +3,20 @@ import 'package:test_api/test_api.dart';
 import 'package:tic_tac_toe/game.dart';
 
 void main() {
-  test('Row is same', () {
+  test('List is same', () {
     Game game = Game();
-    List<List<int>> field = [[1, 1, 1]];
-    game.field = field;
+    List<int> list = [1, 1, 1];
 
-    bool res = game.rowIsSame(0);
+    bool res = game.listIsSame(list);
 
     expect(res, true);
   });
 
-  test('Row is different', () {
+  test('List is different', () {
     Game game = Game();
-    List<List<int>> field = [[1, 0, 1]];
-    game.field = field;
+    List<int> list = [1, 0, 1];
 
-    bool res = game.rowIsSame(0);
+    bool res = game.listIsSame(list);
 
     expect(res, false);
   });

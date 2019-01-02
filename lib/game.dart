@@ -27,11 +27,15 @@ class Game {
 
   bool rowIsSame(int rowIndex) {
     List<int> row = field[rowIndex];
-    int firstElement = row[0];
-    bool rowIsSame = row
+    return listIsSame(row) && row[0] != null;
+  }
+
+  bool listIsSame(List list) {
+    int firstElement = list[0];
+    bool listIsSame = list
       .map((x) => x == firstElement)
       .reduce((res, val) => res && val);
-    return rowIsSame && firstElement != null;
+    return listIsSame;
   }
 
   startNewGame() {
