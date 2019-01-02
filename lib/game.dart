@@ -25,6 +25,23 @@ class Game {
     currentPlayer == 1 ? currentPlayer = 2 : currentPlayer = 1;
   }
 
+  bool isWon() {
+    return getWinner() != null;
+  }
+
+  int getWinner() {
+    int winner;
+    for (int i = 0; i < 3; i++) {
+      if (rowIsSame(i)) winner = field[i][0];
+      if (colIsSame(i)) winner = field[0][i];
+    }
+    if (leftDiagonalIsSame()) winner =
+      field[0][0];
+    if (rightDiagonalIsSame()) winner =
+      field[field.length - 1][0];
+    return winner;
+  }
+
   bool colIsSame(int colIndex) {
     List<int> col = field
       .map((row) => row[colIndex]).toList();

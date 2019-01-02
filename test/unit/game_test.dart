@@ -68,4 +68,30 @@ void main() {
 
     expect(res, true);
   });
+
+  test('Game is won', () {
+    Game game = Game();
+    game.field = [
+      [0, 0, 0],
+      [1, 1, 1],
+      [0, 0, 0]
+    ];
+
+    bool res = game.isWon();
+
+    expect(res, true);
+  });
+
+  test('Get winner', () {
+    Game game = Game();
+    game.field = [
+      [null, null, null],
+      [1, 1, 1],
+      [null, null, null]
+    ];
+
+    int res = game.getWinner();
+
+    expect(res, 1);
+  });
 }
