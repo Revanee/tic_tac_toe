@@ -23,10 +23,9 @@ void main() {
 
   test('Row is different with null elements', () {
     Game game = Game();
-    List<List<int>> field = [
+    game.field = [
       [null, null, null]
     ];
-    game.field = field;
 
     bool res = game.rowIsSame(0);
 
@@ -35,11 +34,37 @@ void main() {
 
   test('Column is same', () {
     Game game = Game();
-    List<List<int>> field = [
+    game.field = [
       [1, 1, 1]
     ];
 
     bool res = game.colIsSame(0);
+
+    expect(res, true);
+  });
+
+  test('Left diagonal is same', () {
+    Game game = Game();
+    game.field = [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ];
+
+    bool res = game.leftDiagonalIsSame();
+
+    expect(res, true);
+  });
+
+  test('Right diagonal is same', () {
+    Game game = Game();
+    game.field = [
+      [0, 0, 1],
+      [0, 1, 0],
+      [1, 0, 0]
+    ];
+
+    bool res = game.rightDiagonalIsSame();
 
     expect(res, true);
   });

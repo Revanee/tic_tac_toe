@@ -36,6 +36,22 @@ class Game {
     return listIsSame(row);
   }
 
+  bool leftDiagonalIsSame() {
+    List<int> diagonal = [];
+    for (int xy = 0; xy < field.length; xy++) {
+      diagonal.add(field[xy][xy]);
+    }
+    return listIsSame(diagonal);
+  }
+
+  bool rightDiagonalIsSame() {
+    List<int> diagonal = [];
+    for (int i = 0; i < field.length; i++) {
+      diagonal.add(field[i][(field.length - i) - 1]);
+    }
+    return listIsSame(diagonal);
+  }
+
   bool listIsSame(List list) {
     int firstElement = list[0];
     bool listIsSame = list
