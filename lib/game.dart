@@ -1,14 +1,13 @@
 class Game {
-
   List<List<int>> field = [[]];
 
   Game() {
     startNewGame();
   }
-  
+
   int currentPlayer = 1;
 
-  cellIsFree(int x, int y) => getValueInCell(x, y) == 0;
+  cellIsFree(int x, int y) => getValueInCell(x, y) == null;
 
   setCell(int x, int y) {
     if (cellIsFree(x, y)) {
@@ -35,16 +34,13 @@ class Game {
       if (rowIsSame(i)) winner = field[i][0];
       if (colIsSame(i)) winner = field[0][i];
     }
-    if (leftDiagonalIsSame()) winner =
-      field[0][0];
-    if (rightDiagonalIsSame()) winner =
-      field[field.length - 1][0];
+    if (leftDiagonalIsSame()) winner = field[0][0];
+    if (rightDiagonalIsSame()) winner = field[field.length - 1][0];
     return winner;
   }
 
   bool colIsSame(int colIndex) {
-    List<int> col = field
-      .map((row) => row[colIndex]).toList();
+    List<int> col = field.map((row) => row[colIndex]).toList();
     return listIsSame(col);
   }
 
@@ -71,17 +67,17 @@ class Game {
 
   bool listIsSame(List list) {
     int firstElement = list[0];
-    bool listIsSame = list
-      .map((x) => x == firstElement)
-      .reduce((res, val) => res && val);
+    bool listIsSame =
+        list.map((x) => x == firstElement).reduce((res, val) => res && val);
     return listIsSame && firstElement != null;
   }
 
   startNewGame() {
     field = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]];
+      [null, null, null],
+      [null, null, null],
+      [null, null, null]
+    ];
     currentPlayer = 1;
   }
 }

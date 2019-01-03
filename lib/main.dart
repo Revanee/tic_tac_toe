@@ -36,6 +36,11 @@ class TicTacToeState extends State {
         ],
       );
 
+  board() => Padding(
+        padding: EdgeInsets.all(20),
+        child: Board(game, this),
+      );
+
   footer() => GestureDetector(
       child: FloatingActionButton(
           child: Icon(Icons.refresh),
@@ -49,8 +54,40 @@ class TicTacToeState extends State {
   Widget build(BuildContext context) {
     List<Widget> widgets = [
       Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0), child: header()),
-      Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Board(game, this)),
-      footer()
+      board(),
+      OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+        List<Widget> widgets = [
+          footer(),
+          FloatingActionButton(
+            child: Text('check'),
+            onPressed: () {
+              if (game.isWon())
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        VictoryPopup(game.getWinner()));
+            },
+          ),
+          Container(
+            height: 50,
+            width: 200,
+            child: Card(
+                child: Center(
+              child: Text(
+                  'Current game is' + (game.isWon() ? ' ' : ' not ') + 'won'),
+            )),
+          )
+        ];
+        return orientation == Orientation.portrait
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: widgets)
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: widgets,
+              );
+      })
     ];
 
     return OrientationBuilder(
@@ -67,4 +104,30 @@ class TicTacToeState extends State {
       },
     );
   }
+}
+
+class VictoryPopup extends StatelessWidget {
+  final int winner;
+
+  VictoryPopup(this.winner);
+
+  @override
+  build(BuildContext context) => Center(
+      child: FractionallySizedBox(
+          heightFactor: .8,
+          widthFactor: .8,
+          child: Card(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text('The winner is'),
+              Icon(winner == 1
+                  ? Icons.fullscreen_exit
+                  : Icons.radio_button_unchecked),
+              FloatingActionButton(
+                child: Icon(Icons.check),
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          ))));
 }
